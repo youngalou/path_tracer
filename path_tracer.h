@@ -20,6 +20,7 @@
 #define WIN_W 500
 #define WIN_H 500
 #define SPP 10
+#define DEPTH 10
 
 #define PI 3.1415926536
 #define RND (2.0*(double)rand()/RAND_MAX-1.0)
