@@ -6,19 +6,19 @@
 #    By: lazuli <lazuli@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/02/16 15:53:08 by lazuli            #+#    #+#              #
-#    Updated: 2018/02/20 16:20:39 by lazuli           ###   ########.fr        #
+#    Updated: 2018/02/21 13:35:49 by lazuli           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = path_tracer
-CFLAG = -Wall -Werror -Wextra
 MLXFLAG = -framework OpenGL -framework AppKit
 MLX = mac-mlx/libmlx.a
 
 FILES = main.c \
-		vector.c \
 		scene.c \
-		halton.c \
+		ray_trace.c \
+		vector.c \
+		color.c \
 		utils.c \
 
 SRC = $(addprefix src/, $(FILES))
@@ -28,11 +28,11 @@ OBJ = $(SRC:.c=.o)
 all: $(NAME)
 
 $(NAME): $(MLX) $(OBJ)
-	@gcc -o $(NAME) $(CFLAG) $(OBJ) $(MLX) $(MLXFLAG)
+	@gcc-7 -o $(NAME) $(OBJ) $(MLX) $(MLXFLAG) -fopenmp -O3
 	@echo "\033[32m- $(NAME) executable compiled\033[0m"
 
 $(OBJ): %.o: %.c path_tracer.h
-	gcc -c $(CFLAG) $< -o $@
+	gcc-7 -c $< -o $@
 
 $(MLX):
 	@make -C mac-mlx
