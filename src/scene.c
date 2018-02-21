@@ -52,6 +52,6 @@ t_obj	*init_obj(void)
 	define_obj(&obj[6], 2, 1, 0, new_vec(.2, .2, .6), new_vec(-1.75, -4.5, 3.1), 0.6);		//left sphere
 	define_obj(&obj[7], 2, 1, 0, new_vec(.5, .5, .05), new_vec(2.0, -5, 3.7), 0.5);			//right sphere
 	define_obj(&obj[8], 2, 2, 0, new_vec(.2, .4, .2), new_vec(-.5, -4, 4.4), 1.05);			//middle sphere
-	define_obj(&obj[9], 2, 3, 1, new_vec(1, 1, 1), new_vec(0, .5, 3.5), 0.5);				//light source
+	define_obj(&obj[9], 2, 3, 20.0, new_vec(1, 1, 1), new_vec(0, .5, 3.5), 0.5);				//light source
 	return obj;
 }

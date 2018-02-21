@@ -82,7 +82,7 @@ t_vec	trace(t_env *env, t_ray ray, int depth, t_vec clr)
 	double	t;
 	t_obj	obj;
 	if (depth >= DEPTH)
-		return new_vec(0, 0, 0);
+		return new_vec(.5, .5, .5);
 	//intersection routine
 	for (int i = 0; i < NUM_OBJ; i++)
 	{
@@ -103,9 +103,9 @@ t_vec	trace(t_env *env, t_ray ray, int depth, t_vec clr)
 		ray.d = vec_add(N, hemisphere(RND2, RND2));
 		double	cost = vec_dot(ray.d, N);
 		tmp = trace(env, ray, depth + 1, tmp);
-		clr.x += cost*(tmp.x*obj.clr.x)*0.1;
-		clr.y += cost*(tmp.y*obj.clr.y)*0.1;
-		clr.z += cost*(tmp.z*obj.clr.z)*0.1;
+		clr.x = cost*(tmp.x*obj.clr.x);
+		clr.y = cost*(tmp.y*obj.clr.y);
+		clr.z = cost*(tmp.z*obj.clr.z);
 		return clr;
 	}
 	if (obj.brdf == 2) //specular brdf
@@ -129,7 +129,7 @@ int		main(void)
 	{
 		for (int x = 0; x < WIN_W; x++)
 		{
-			t_vec	clr = new_vec(1, 1, 1);
+			t_vec	clr = new_vec(0, 0, 0);
 			for (int s = 0; s < SPP; s++)
 			{
 				t_vec	cam_dir = get_cam_dir(env, x, y);
@@ -138,7 +138,7 @@ int		main(void)
 				t_ray	ray;
 				ray.o = env->cam_pos;
 				ray.d = vec_norm(vec_diff(cam_dir, ray.o));
-				clr = trace(env, ray, 0, clr);
+				clr = vec_add(clr, trace(env, ray, 0, new_vec(1, 1, 1)));
 			}
 			clr = vec_distr_div(SPP, clr);
 			int color = clr_to_int(clr);
