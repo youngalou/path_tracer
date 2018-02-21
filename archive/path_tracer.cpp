@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   path_tracer.cpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lyoung <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: lazuli <lazuli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/12 11:50:27 by lyoung            #+#    #+#             */
-/*   Updated: 2018/02/12 12:09:33 by lyoung           ###   ########.fr       */
+/*   Updated: 2018/02/16 14:22:11 by lazuli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,38 +14,10 @@
 ////////////////////////////////////////////////////////////////////////////////
 
 #include "path_tracer.h"
-
-namespace path_tracer {
+#include "minilibx/mlx.h"
 
 const double inf = 1e9;
 const double eps = 1e-4;
-using namespace std;
-
-////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////
-
-struct Vec {
-	double x, y, z;
-	Vec(double x0 = 0, double y0 = 0, double z0 = 0) { x = x0; y = y0; z = z0; }
-	Vec operator+(const Vec &b) const { return Vec(x + b.x, y + b.y, z + b.z); }
-	Vec operator-(const Vec &b) const { return Vec(x - b.x, y - b.y, z - b.z); }
-	Vec operator*(double b) const { return Vec(x*b, y*b, z*b); }
-	Vec operator/(double b) const { return Vec(x / b, y / b, z / b); }
-	Vec mult(const Vec &b) const { return Vec(x*b.x, y*b.y, z*b.z); }
-	Vec& norm() { return *this = *this * (1 / sqrt(x*x + y*y + z*z)); } // WHY MULT BY RECIPRICOL AS OPPOSED TO DIVIDE?
-	double length() { return sqrt(x*x + y*y + z*z); }
-	double dot(const Vec &b) const { return x*b.x + y*b.y + z*b.z; }
-	Vec operator%(Vec &b) { return Vec(y*b.z - z*b.y, z*b.x - x*b.z, x*b.y - y*b.x); }
-};
-
-struct Ray {
-	Vec o, d;
-	Ray(Vec o0 = 0, Vec d0 = 0) { o = o0, d = d0.norm(); }
-};
-
-////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////
-
 
 class Obj {
 public:
@@ -303,7 +275,7 @@ int		main(void)
 			}
 		}
 	}
-	mlx_put_image_to_window(env->mlx, env->win, env->img, 0, 0);
+	// mlx_put_image_to_window(env->mlx, env->win, env->img, 0, 0);
 	while (1)
 	{}
 	return (0);
