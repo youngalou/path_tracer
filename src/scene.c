@@ -6,7 +6,7 @@
 /*   By: lazuli <lazuli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/16 16:59:28 by lazuli            #+#    #+#             */
-/*   Updated: 2018/02/21 14:56:21 by lazuli           ###   ########.fr       */
+/*   Updated: 2018/02/21 17:52:03 by lazuli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ t_vec	get_cam_dir(t_env *env, const float x, const float y)
 	float	vec_x = ((2.0 * x - w) / w)*tan(env->fov_x);
 	float	vec_y = (1 - ((2.0*y)/h)*tan(env->fov_y));
 	float	vec_z = 1.0; //.5 / tan(env->fov_x/2);
-	return new_vec(vec_x, vec_y, vec_z);
+	return vec_add(env->cam_pos, new_vec(vec_x, vec_y, vec_z));
 }
 
 //type (1=plane, 2=sphere)
@@ -52,6 +52,6 @@ t_obj	*init_obj(void)
 	define_obj(&obj[6], 2, 1, 0, new_clr(.1, .4, .4), new_vec(-1.75, -4.5, 3.1), 0.6);		//left sphere
 	define_obj(&obj[7], 2, 1, 0, new_clr(.4, .4, .1), new_vec(2.0, -5, 3.7), 0.5);			//right sphere
 	define_obj(&obj[8], 2, 2, 0, new_clr(.1, .4, .1), new_vec(-.5, -4, 4.4), 1.05);			//middle sphere
-	define_obj(&obj[9], 2, 3, 5.0, new_clr(1, 1, 1), new_vec(0, .5, 3.5), 0.5);			//light source
+	define_obj(&obj[9], 2, 3, 5.0, new_clr(1, 1, 1), new_vec(0, .5, 3.5), 0.5);				//light source
 	return obj;
 }

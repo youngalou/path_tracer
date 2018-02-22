@@ -6,7 +6,7 @@
 /*   By: lazuli <lazuli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/21 13:33:32 by lazuli            #+#    #+#             */
-/*   Updated: 2018/02/21 14:53:21 by lazuli           ###   ########.fr       */
+/*   Updated: 2018/02/21 17:51:49 by lazuli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,30 @@ float	intersect_plane(t_ray ray, t_obj obj)
 	else
 		return 0;
 }
+
+// alternate sphere intersect
+// float	intersect_sphere(t_ray ray, t_obj obj)
+// {
+// 	t_vec	tmp = vec_diff(ray.o, obj.c);
+// 	float	a = vec_dot(ray.d, tmp);
+// 	float	b = vec_length(tmp);
+// 	float	c = obj.r;
+// 	float	disc = (a * a) - (b * b) + (c * c);
+// 	if (disc < 0)
+// 		return 0;
+// 	float	d = -1 * a;
+// 	disc = sqrt(disc);
+// 	float dplus = d + disc;
+// 	float dminus = d - disc;
+// 	if (dplus > 0 && dminus > 0)
+// 		return (dplus > dminus) ? dminus : dplus;
+// 	else if (dplus > 0)
+// 		return dplus;
+// 	else if (dminus > 0)
+// 		return dminus;
+// 	else
+// 		return (0);
+// }
 
 float	intersect_sphere(t_ray ray, t_obj obj)
 {
@@ -54,7 +78,7 @@ t_clr	ray_trace(t_env *env, t_ray ray, int depth, t_clr clr)
 	float	t;
 	t_obj	obj;
 	if (depth >= DEPTH)
-		return new_clr(.25, .25, .25);
+		return new_clr(0, 0, 0);
 	//intersection routine
 	for (int i = 0; i < NUM_OBJ; i++)
 	{
