@@ -6,11 +6,25 @@
 /*   By: lazuli <lazuli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/12 11:50:27 by lyoung            #+#    #+#             */
-/*   Updated: 2018/02/21 17:55:02 by lazuli           ###   ########.fr       */
+/*   Updated: 2018/02/23 15:32:48 by lazuli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../path_tracer.h"
+
+void	exit_program(t_env *env)
+{
+	mlx_destroy_image(env->mlx, env->img);
+	mlx_destroy_window(env->mlx, env->win);
+	exit(0);
+}
+
+int		key_command(int key, t_env *env)
+{
+	if (key == 53)
+		exit_program(env);
+	return 0;
+}
 
 t_env	*init_env(void)
 {
@@ -32,6 +46,7 @@ t_env	*init_env(void)
 			env->pix[y][x] = new_clr(0, 0, 0);
 	}
 	srand(time(NULL));
+	mlx_hook(env->win, 2, 0, key_command, env);
 	return env;
 }
 

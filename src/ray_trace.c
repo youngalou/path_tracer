@@ -6,7 +6,7 @@
 /*   By: lazuli <lazuli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/21 13:33:32 by lazuli            #+#    #+#             */
-/*   Updated: 2018/02/21 17:51:49 by lazuli           ###   ########.fr       */
+/*   Updated: 2018/02/23 15:19:09 by lazuli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,7 @@ t_clr	ray_trace(t_env *env, t_ray ray, int depth, t_clr clr)
 	ray.o = vec_distr_mult(dist, vec_add(ray.o, ray.d));
 	t_vec	N = (obj.type == 1) ? obj.c : vec_norm(vec_diff(ray.o, obj.c));
 	N = vec_dot(N, ray.d) > 0.0f ? vec_distr_mult(-1.0f, N) : N;
+	ray.o = vec_add(ray.o, vec_distr_mult(g_eps, N)); //move origin off surface a little
 
 	t_clr	tmp = new_clr(1, 1, 1);
 	if (obj.brdf == 1) //diffuse brdf

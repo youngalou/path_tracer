@@ -6,7 +6,7 @@
 /*   By: lazuli <lazuli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/12 13:12:28 by lyoung            #+#    #+#             */
-/*   Updated: 2018/02/21 17:56:11 by lazuli           ###   ########.fr       */
+/*   Updated: 2018/02/23 15:09:39 by lazuli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 #define WIN_H 1000
 #define SPP 5000
 #define DEPTH 5
-#define NUM_OBJ 10
+#define NUM_OBJ 7
 #define H_FOV 2*M_PI * 60.0 / 360.0
 
 typedef struct	s_vec
